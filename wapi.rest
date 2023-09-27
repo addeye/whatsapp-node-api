@@ -1,0 +1,132 @@
+
+### get qr
+GET http://localhost:5000/auth/getqr HTTP/1.1
+
+### Sending Messages
+POST http://localhost:5000/chat/sendmessage/6282134889246
+content-type: application/json
+
+{
+    "message": "sample"
+}
+
+
+###Sending Images
+##Request Body
+##image - contains the base64 encoded / URL of image to be sent
+##caption - (optional) - contains caption for the message
+POST http://localhost:5000/chat/sendimage/6282134889246
+content-type: application/json
+
+{
+    "image": "sample",
+    "caption" : "sample"
+}
+
+
+###Sending PDF
+##Request Body
+##pdf - contains the base64 encoded / URL of pdf to be sent
+POST http://localhost:5000/chat/sendpdf/6282134889246
+content-type: application/json
+
+{
+    "pdf": "sample"
+}
+
+
+
+###Sending Locations
+## Request Body
+## - latitude - contains the string of latitude
+## - longitude - contains the string of longitude
+## - description - (optional) - contains description for the location
+POST http://localhost:5000/chat/sendlocation/6282134889246
+content-type: application/json
+
+{
+    "latitude": "sample",
+    "longitude" : "sample",
+    "description" : "sample"
+}
+
+###Get Chat by id
+GET http://localhost:5000/chat/getchatbyid/6282134889246
+
+
+###Get Chats
+##Returns an Array of all Chats
+GET http://localhost:5000/chat/getchats
+
+
+### Group Chat
+##Sending Messages to Group</u>
+## Request Body
+## - message - contains the message to be sent
+POST http://localhost:5000/group/sendmessage/<Group_Name>
+content-type: application/json
+
+{
+    "message": "sample",
+}
+
+
+###Sending Images</u>
+## Request Body
+## - image - contains the base64 encoded / URL of image to be sent
+## - caption - (optional) - contains caption for the message
+POST http://localhost:5000/group/sendimage/<Group_Name>
+content-type: application/json
+
+{
+    "image": "sample",
+    "caption": "sample"
+}
+
+
+###Sending PDF</u>
+## Request Body
+## - pdf - contains the base64 encoded / URL of pdf to be sent
+POST http://localhost:5000/group/sendpdf/<Group_Name>
+content-type: application/json
+
+{
+    "pdf": "sample"
+}
+
+
+###Sending Locations
+## Request Body
+## - latitude - contains the string of latitude
+## - longitude - contains the string of longitude
+## - description - (optional) - contains description for the location
+POST http://localhost:5000/group/sendlocation/<Group_Name>
+content-type: application/json
+
+{
+    "latitude": "sample",
+    "longitude" : "sample",
+    "description" : "sample"
+}
+
+
+
+## Contact
+
+###Get Contacts</u>
+##Returns an Array of Contacts of the Current Instance
+GET http://localhost:5000/contact/getcontacts
+
+
+###Get Contact
+##Returns a Contact
+GET http://localhost:5000/contact/getcontact/6282134889246
+
+
+###GET Profile Pic
+##Returns a URL of the User's Profile Picture if Privacy Settings allow it
+GET http://localhost:5000/contact/getprofilepic/6282134889246
+
+
+####Registered User
+GET http://localhost:5000/contact/isregistereduser/6282134889246
