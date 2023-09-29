@@ -10,12 +10,7 @@ const { Client, LocalAuth } = require("whatsapp-web.js");
 process.title = "whatsapp-node-api";
 global.client;
 global.authed = false;
-// global.client = new Client({
-//   authStrategy: new LocalAuth(),
-//   puppeteer: { headless: true },
-// });
 
-// global.authed = false;
 
 const app = express();
 
@@ -76,7 +71,8 @@ startSessionByDeciveId = async (deviceId) => {
   client.initialize();
 }
 
-startSessionByDeciveId('1234567890');
+startSessionByDeciveId('12345');
+// startSessionByDeciveId('678910');
 
 const chatRoute = require("./components/chatting");
 const groupRoute = require("./components/group");

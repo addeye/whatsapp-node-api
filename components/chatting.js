@@ -15,22 +15,6 @@ const mediadownloader = (url, path, callback) => {
 router.post('/sendmessage/:phone', async (req,res) => {
     let phone = req.params.phone;
     let message = req.body.message;
-    // let token = req.body.token
-
-    // fs.readFile('./userdata.json', (err, data) => {
-    //     if (err) {
-    //         console.error('Error while reading the file:', err)
-    //         return
-    //     }
-    //     try {
-    //         const data = JSON.parse(data);
-    //         // output the parsed data
-    //         // res.send({ status:'success', message: `Message successfully sent to ${phone}` })
-    //         console.log(data);
-    //       } catch (err) {
-    //         console.error('Error while parsing JSON data:', err);
-    //       }
-    // });
 
     if (phone == undefined || message == undefined) {
         res.send({ status:"error", message:"please enter valid phone and message" })

@@ -3,12 +3,12 @@
         "device_id":"12345",
         "phone" : "081953656221",
         "status" : "offline",
-        "token" : null
+        "token" : "asasasasasas"
     },
     {
         "device_id":"678910",
         "phone" : "082134889246",
         "status" : "offline",
-        "token" : null
+        "token" : "12121212121"
     }
 ]
