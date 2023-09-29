@@ -8,12 +8,14 @@ const config = require("./config.json");
 const { Client, LocalAuth } = require("whatsapp-web.js");
 
 process.title = "whatsapp-node-api";
-global.client = new Client({
-  authStrategy: new LocalAuth(),
-  puppeteer: { headless: true },
-});
-
+global.client;
 global.authed = false;
+// global.client = new Client({
+//   authStrategy: new LocalAuth(),
+//   puppeteer: { headless: true },
+// });
+
+// global.authed = false;
 
 const app = express();
 
@@ -24,42 +26,57 @@ app.use(bodyParser.json({ limit: "50mb" }));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-client.on("qr", (qr) => {
-  console.log("qr");
-  fs.writeFileSync("./components/last.qr", qr);
-});
+startSessionByDeciveId = async (deviceId) => {
+  console.log(deviceId);
 
-client.on("authenticated", () => {
-  console.log("AUTH!");
-  authed = true;
+  client = new Client({
+    authStrategy: new LocalAuth({
+      clientId: deviceId,
+    }),
+    puppeteer: { headless: true },
+  });
+  
+  authed = false;
 
-  try {
-    fs.unlinkSync("./components/last.qr");
-  } catch (err) {}
-});
-
-client.on("auth_failure", () => {
-  console.log("AUTH Failed !");
-  process.exit();
-});
-
-client.on("ready", () => {
-  console.log("Client is ready!");
-});
-
-client.on("message", async (msg) => {
-  if (config.webhook.enabled) {
-    if (msg.hasMedia) {
-      const attachmentData = await msg.downloadMedia();
-      msg.attachmentData = attachmentData;
+  client.on("qr", (qr) => {
+    console.log("qr");
+    fs.writeFileSync("./components/last.qr", qr);
+  });
+  
+  client.on("authenticated", () => {
+    console.log("AUTH!");
+    authed = true;
+  
+    try {
+      fs.unlinkSync("./components/last.qr");
+    } catch (err) {}
+  });
+  
+  client.on("auth_failure", () => {
+    console.log("AUTH Failed !");
+    process.exit();
+  });
+  
+  client.on("ready", () => {
+    console.log("Client is ready!");
+  });
+  
+  client.on("message", async (msg) => {
+    if (config.webhook.enabled) {
+      if (msg.hasMedia) {
+        const attachmentData = await msg.downloadMedia();
+        msg.attachmentData = attachmentData;
+      }
+      axios.post(config.webhook.path, { msg });
     }
-    axios.post(config.webhook.path, { msg });
-  }
-});
-client.on("disconnected", () => {
-  console.log("disconnected");
-});
-client.initialize();
+  });
+  client.on("disconnected", () => {
+    console.log("disconnected");
+  });
+  client.initialize();
+}
+
+startSessionByDeciveId('1234567890');
 
 const chatRoute = require("./components/chatting");
 const groupRoute = require("./components/group");

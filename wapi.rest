@@ -19,7 +19,7 @@ POST http://localhost:5000/chat/sendimage/6282134889246
 content-type: application/json
 
 {
-    "image": "sample",
+    "image": "https://disk.mediaindonesia.com/files/news/2022/12/30/WhatsApp%20Image%202022-12-22%20at%2017.06.28.jpg",
     "caption" : "sample"
 }
 
