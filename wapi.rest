@@ -3,11 +3,12 @@
 GET http://localhost:5000/auth/getqr HTTP/1.1
 
 ### Sending Messages
-POST http://localhost:5000/chat/sendmessage/6282134889246
+POST http://localhost:5000/chat/sendmessage/6281953656221
 content-type: application/json
 
 {
-    "message": "sample"
+    "message": "sample",
+    "deviceId" : "12345"
 }
 
 

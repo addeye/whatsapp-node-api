@@ -15,15 +15,25 @@ const mediadownloader = (url, path, callback) => {
 router.post('/sendmessage/:phone', async (req,res) => {
     let phone = req.params.phone;
     let message = req.body.message;
+    let deviceId = req.body.deviceId;
 
     if (phone == undefined || message == undefined) {
         res.send({ status:"error", message:"please enter valid phone and message" })
     } else {
-        client.sendMessage(phone + '@c.us', message).then((response) => {
-            if (response.id.fromMe) {
-                res.send({ status:'success', message: `Message successfully sent to ${phone}` })
-            }
-        });
+        if(deviceId == '12345'){
+            client.sendMessage(phone + '@c.us', message).then((response) => {
+                if (response.id.fromMe) {
+                    res.send({ status:'success', message: `Message successfully sent to ${phone}` })
+                }
+            });
+        }else{
+            client2.sendMessage(phone + '@c.us', message).then((response) => {
+                if (response.id.fromMe) {
+                    res.send({ status:'success', message: `Message successfully sent to ${phone}` })
+                }
+            });
+        }
+        
     }
 });
 

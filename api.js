@@ -9,7 +9,9 @@ const { Client, LocalAuth } = require("whatsapp-web.js");
 
 process.title = "whatsapp-node-api";
 global.client;
+global.client2;
 global.authed = false;
+global.authed2 = false;
 
 
 const app = express();
@@ -20,6 +22,21 @@ app.use(bodyParser.json({ limit: "50mb" }));
 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+let users = [
+  {
+      "device_id":"12345",
+      "phone" : "081953656221",
+      "status" : "offline",
+      "token" : "asasasasasas"
+  },
+  {
+      "device_id":"678910",
+      "phone" : "082134889246",
+      "status" : "offline",
+      "token" : "12121212121"
+  }
+];
 
 startSessionByDeciveId = async (deviceId) => {
   console.log(deviceId);
@@ -71,8 +88,58 @@ startSessionByDeciveId = async (deviceId) => {
   client.initialize();
 }
 
+startSessionByDeciveId2 = async (deviceId) => {
+  console.log(deviceId);
+
+  client2 = new Client({
+    authStrategy: new LocalAuth({
+      clientId: deviceId,
+    }),
+    puppeteer: { headless: true },
+  });
+  
+  authed2 = false;
+
+  client2.on("qr", (qr) => {
+    console.log("qr");
+    fs.writeFileSync("./components/last.qr", qr);
+  });
+  
+  client2.on("authenticated", () => {
+    console.log("AUTH!");
+    authed2 = true;
+  
+    try {
+      fs.unlinkSync("./components/last.qr");
+    } catch (err) {}
+  });
+  
+  client2.on("auth_failure", () => {
+    console.log("AUTH Failed !");
+    process.exit();
+  });
+  
+  client2.on("ready", () => {
+    console.log("Client is ready!");
+  });
+  
+  client2.on("message", async (msg) => {
+    if (config.webhook.enabled) {
+      if (msg.hasMedia) {
+        const attachmentData = await msg.downloadMedia();
+        msg.attachmentData = attachmentData;
+      }
+      axios.post(config.webhook.path, { msg });
+    }
+  });
+  client2.on("disconnected", () => {
+    console.log("disconnected");
+  });
+  client2.initialize();
+}
+
 startSessionByDeciveId('12345');
-// startSessionByDeciveId('678910');
+startSessionByDeciveId2('678910');
 
 const chatRoute = require("./components/chatting");
 const groupRoute = require("./components/group");

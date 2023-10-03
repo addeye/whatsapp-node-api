@@ -1,8 +1,11 @@
 const router = require("express").Router();
 const fs = require("fs");
 
-router.get("/checkauth", async (req, res) => {
-  client
+router.get("/checkauth/:deviceId", async (req, res) => {
+  const deviceId = req.params.deviceId;
+  console.log(deviceId);
+  if(deviceId == '12345'){
+    client
     .getState()
     .then((data) => {
       console.log(data);
@@ -13,10 +16,27 @@ router.get("/checkauth", async (req, res) => {
         res.send("DISCONNECTED");
       }
     });
+  }else{
+    client2
+    .getState()
+    .then((data) => {
+      console.log(data);
+      res.send(data);
+    })
+    .catch((err) => {
+      if (err) {
+        res.send("DISCONNECTED");
+      }
+    });
+  }
+  
 });
 
-router.get("/getqr", async (req, res) => {
-  client
+router.get("/getqr/:deviceId", async (req, res) => {
+  const deviceId = req.params.deviceId;
+  console.log(deviceId);
+  if(deviceId == '12345'){
+    client
     .getState()
     .then((data) => {
       if (data) {
@@ -25,6 +45,18 @@ router.get("/getqr", async (req, res) => {
       } else sendQr(res);
     })
     .catch(() => sendQr(res));
+  }else{
+    client2
+    .getState()
+    .then((data) => {
+      if (data) {
+        res.write("<html><body><h2>Already Authenticated</h2></body></html>");
+        res.end();
+      } else sendQr(res);
+    })
+    .catch(() => sendQr(res));
+  }
+  
 });
 
 function sendQr(res) {
