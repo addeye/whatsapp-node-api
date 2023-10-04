@@ -8,10 +8,10 @@ const config = require("./config.json");
 const { Client, LocalAuth } = require("whatsapp-web.js");
 
 process.title = "whatsapp-node-api";
-global.client;
-global.client2;
-global.authed = false;
-global.authed2 = false;
+// global.client;
+// global.client2;
+// global.authed = false;
+// global.authed2 = false;
 
 
 const app = express();
@@ -23,7 +23,7 @@ app.use(bodyParser.json({ limit: "50mb" }));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-let users = [
+global.users = [
   {
       "device_id":"12345",
       "phone" : "081953656221",
@@ -38,7 +38,77 @@ let users = [
   }
 ];
 
-startSessionByDeciveId = async (deviceId) => {
+
+function createWhatsAppClient(userData) {
+  // console.log(deviceId);
+
+  const client = new Client({
+    authStrategy: new LocalAuth({
+      clientId: userData.device_id,
+    }),
+    puppeteer: { headless: true },
+  });
+
+
+  client.on("qr", (qr) => {
+    console.log("qr");
+    fs.writeFileSync(`./components/last_${userData.device_id}.qr`, qr);
+  });
+
+  
+  client.on("authenticated", () => {
+    console.log("AUTH!");
+    try {
+      fs.unlinkSync("./components/last_"+userData.device_id+".qr");
+    } catch (err) {}
+  });
+  
+  client.on("auth_failure", () => {
+    console.log("AUTH Failed !");
+    process.exit();
+  });
+  
+  client.on("ready", () => {
+    console.log("Client is ready!");
+  });
+  
+  client.on("message", async (msg) => {
+    if (config.webhook.enabled) {
+      if (msg.hasMedia) {
+        const attachmentData = await msg.downloadMedia();
+        msg.attachmentData = attachmentData;
+      }
+      axios.post(config.webhook.path, { msg });
+    }
+    if(msg.body === '!ping') {
+      msg.reply('pong');
+    }
+  });
+  client.on("disconnected", () => {
+    console.log("disconnected");
+  });
+  // client.initialize();
+  return client;
+}
+
+global.clients = [];
+
+for (const userData of users) {
+  const client = createWhatsAppClient(userData);
+  clients.push({
+    "device_id":userData.device_id,
+    "client": client
+  });
+}
+
+for (let index = 0; index < clients.length; index++) {
+  const client = clients[index];
+  console.log("running initialize");
+  client.client.initialize();
+}
+
+
+/* startSessionByDeciveId = async (deviceId) => {
   console.log(deviceId);
 
   client = new Client({
@@ -86,9 +156,9 @@ startSessionByDeciveId = async (deviceId) => {
     console.log("disconnected");
   });
   client.initialize();
-}
+} */
 
-startSessionByDeciveId2 = async (deviceId) => {
+/* startSessionByDeciveId2 = async (deviceId) => {
   console.log(deviceId);
 
   client2 = new Client({
@@ -136,10 +206,10 @@ startSessionByDeciveId2 = async (deviceId) => {
     console.log("disconnected");
   });
   client2.initialize();
-}
+} */
 
-startSessionByDeciveId('12345');
-startSessionByDeciveId2('678910');
+// startSessionByDeciveId('12345');
+// startSessionByDeciveId2('678910');
 
 const chatRoute = require("./components/chatting");
 const groupRoute = require("./components/group");

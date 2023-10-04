@@ -32,35 +32,28 @@ router.get("/checkauth/:deviceId", async (req, res) => {
   
 });
 
-router.get("/getqr/:deviceId", async (req, res) => {
-  const deviceId = req.params.deviceId;
-  console.log(deviceId);
-  if(deviceId == '12345'){
-    client
+router.get("/getqr/:token", async (req, res) => {
+  const token = req.params.token;
+  console.log(token);
+
+  const device_id = users.find((user) => user.token == token).device_id;
+
+    // const client = clients.find((client) => client._config.authStrategy.options.clientId === token);
+  const client = clients.find((client) => client.device_id === device_id).client;
+
+  client
     .getState()
     .then((data) => {
       if (data) {
         res.write("<html><body><h2>Already Authenticated</h2></body></html>");
         res.end();
-      } else sendQr(res);
+      } else sendQr(res,device_id);
     })
-    .catch(() => sendQr(res));
-  }else{
-    client2
-    .getState()
-    .then((data) => {
-      if (data) {
-        res.write("<html><body><h2>Already Authenticated</h2></body></html>");
-        res.end();
-      } else sendQr(res);
-    })
-    .catch(() => sendQr(res));
-  }
-  
+    .catch(() => sendQr(res,device_id));
 });
 
-function sendQr(res) {
-  fs.readFile("components/last.qr", (err, last_qr) => {
+function sendQr(res,device_id) {
+  fs.readFile("components/last_"+device_id+".qr", (err, last_qr) => {
     if (!err && last_qr) {
       var page = `
                     <html>
