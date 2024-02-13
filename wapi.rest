@@ -1,6 +1,6 @@
 
 ### get qr
-GET http://localhost:5000/auth/getqr HTTP/1.1
+GET http://localhost:5000/   HTTP/1.1
 
 ### Sending Messages
 POST http://localhost:5000/chat/sendmessage/6281953656221
