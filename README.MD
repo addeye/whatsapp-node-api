@@ -1,119 +1,64 @@
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
-# whatsapp-node-api 
+<p align="center">
+<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+</p>
 
-  [![Support me on Patreon](https://user-images.githubusercontent.com/6497827/53698102-4af3f400-3dfe-11e9-9749-4104ceb6ea3c.png)](https://www.patreon.com/pranavms)  [![PayPal](https://user-images.githubusercontent.com/6497827/53698092-42032280-3dfe-11e9-8054-1597c62d344e.png)](https://www.paypal.me/pranavms1)
+## About Laravel
 
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-> A simple NodeJS Wrapper for [whatsapp-web.js by pedroslopez](https://github.com/pedroslopez/whatsapp-web.js)
+- [Simple, fast routing engine](https://laravel.com/docs/routing).
+- [Powerful dependency injection container](https://laravel.com/docs/container).
+- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
+- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
+- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
+- [Robust background job processing](https://laravel.com/docs/queues).
+- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
 
-  
+Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-• [Technologies Used](https://github.com/pranavms13/whatsapp-node-api#technologies) • [Why?](https://github.com/pranavms13/whatsapp-node-api#why) • [Goals](https://github.com/pranavms13/whatsapp-node-api#goals) • [FAQ](https://github.com/pranavms13/whatsapp-node-api#faq)
+## Learning Laravel
 
-  
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-## [](https://github.com/pranavms13/whatsapp-node-api#technologies)💻 Technologies
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-  
+## Laravel Sponsors
 
--  [NodeJS](https://nodejs.org/en/)
+We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
--  [whatsapp-web.js](https://github.com/pedroslopez/whatsapp-web.js)
+### Premium Partners
 
--  [puppeteer](https://github.com/GoogleChrome/puppeteer)
+- **[Vehikl](https://vehikl.com/)**
+- **[Tighten Co.](https://tighten.co)**
+- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
+- **[64 Robots](https://64robots.com)**
+- **[Cubet Techno Labs](https://cubettech.com)**
+- **[Cyber-Duck](https://cyber-duck.co.uk)**
+- **[Many](https://www.many.co.uk)**
+- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
+- **[DevSquad](https://devsquad.com)**
+- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
+- **[OP.GG](https://op.gg)**
+- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
+- **[Lendio](https://lendio.com)**
 
+## Contributing
 
-## [API Doc](https://github.com/pranavms13/whatsapp-node-api/blob/master/APIDOC.MD)
-  
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## [](https://github.com/pranavms13/whatsapp-node-api#why)Why?
+## Code of Conduct
 
-  
+In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
-The main reason I decided to build this is that there are many developers who want to play around with Whatsapp API and use them in personal applications before getting/purchasing a Whatsapp Business Account API officially from Whatsapp.
+## Security Vulnerabilities
 
-  
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## [](https://github.com/pranavms13/whatsapp-node-api#goals)Goals
+## License
 
-  
-
-- 🚀 Fast!!!
-
-- 🔒 Does not touch user’s data
-
-- 💰 Free! for personal use
-
-  
-
-If you think whatsapp-node-api delivers these, let me know by putting a star ⭐ on this project.
-
-  
-
-## [](https://github.com/pranavms13/whatsapp-node-api#faq)FAQ
-
-  
-
--  **Is this app built with NodeJS?**
-
-Yes, it's built with [NodeJS](https://nodejs.org/en/). Please see the [Technologies](https://github.com/pranavms13/whatsapp-node-api#technologies) section for more info.
-
--  **What boilerplate did you use?**
-
-None. The idea was to get a better understanding of how things work together, But I do take a cue from other projects.
-
--  **What npm modules did you use?**
-
--  [express](https://github.com/expressjs/express) for API Server
-
--  [body-parser](https://github.com/expressjs/body-parser) Node.js body parser middleware
-
--  [fs](https://www.npmjs.com/package/fs) To read session.json
-
--  [whatsapp-web.js](https://github.com/pedroslopez/whatsapp-web.js) A WhatsApp API client that connects through the WhatsApp Web browser app
-
-  
-
--  **How do I contact you?**
-
-If you find an issue, please report it here. For everything else, please drop me a line at [pranavms13@yahoo.com](mailto:pranavms13@yahoo.com)
-
--  **Do you have any other projects?**
-
-I thought you'd never ask. Yes, I do.
-
-[https://github.com/pranavms13](https://github.com/pranavms13)
-
-  
-
-## [](https://github.com/pranavms13/whatsapp-node-api#legal)📃 Legal
-
-  
-
-This code is in no way affiliated with, authorized, maintained, sponsored or endorsed by WhatsApp or any of its affiliates or subsidiaries. This is an independent and unofficial software. Use at your own risk. **Commercial use of this code/repo is strictly prohibited.**
-
-  
-
-## PR's are welcome
-
-  
-  
-  
-
-## [](https://github.com/pranavms13/whatsapp-node-api#donate)Donate
-
-  
-
-You can support the maintainer of this project through donation :
-
-  
-
-[![Support via PayPal](https://camo.githubusercontent.com/19fc947af2adcacd24b6cdbd4a33c10d7cbaeb6c/68747470733a2f2f63646e2e7261776769742e636f6d2f74776f6c66736f6e2f70617970616c2d6769746875622d627574746f6e2f312e302e302f646973742f627574746f6e2e737667)](https://www.paypal.me/pranavms1/) **or**  [UPI Donate](https://pranavms.ml/donate)
-
-  
-
-## [](https://github.com/pranavms13/whatsapp-node-api#contact-me)👋 Contact Me 👋
-
-  
-
-[ ![Contact me on telegram](https://user-images.githubusercontent.com/6497827/57844175-2ac4b600-77ed-11e9-8488-f2d45efa7497.png)](http://t.me/pranavms13) [![Mail me](https://user-images.githubusercontent.com/6497827/62424751-c1b85480-b6f0-11e9-97de-096c0a980829.png)](mailto:pranavms13@yahoo.com?subject=Regarding%20Wbot&body=Hi)
+The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
