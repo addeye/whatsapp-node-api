@@ -28,11 +28,6 @@
                 <th>No WA</th>
                 <td>{{$data->phone}}</td>
             </tr>
-
-            <tr>
-                <th>Status</th>
-                <td>{{$data->status}}</td>
-            </tr>
             <tr>
                 <td colspan="2">
                     <button class="btn btn-danger" onclick="getQrcode()" data-bs-toggle="modal" data-bs-target="#linkDevice" type="button">
